@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authorized?
+  # before_action :authorized?
 
 private
 

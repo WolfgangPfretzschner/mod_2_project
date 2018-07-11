@@ -8,9 +8,12 @@ class PeopleController < ApplicationController
   def show
 
   end
+  def index
+    @people = Person.all
+  end
 
   def create
-  
+
   end
 
   private

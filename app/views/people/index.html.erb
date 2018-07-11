@@ -1,0 +1,21 @@
+<h1>Flatiron Navigator</h1>
+<br />
+<%= link_to 'Create New Account', new_person_path %>
+<br />
+<%# link_to 'Log In', login_person_path %>
+<table>
+    <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= link_to person.name, person %></td>
+        <td><%= person.cohort.current_module %></td>
+        <td><%= person.classification %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<br>
