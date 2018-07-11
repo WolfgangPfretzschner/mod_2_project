@@ -6,24 +6,24 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: user_params[:username])
-    if @user && @user.authenticate(user_params[:password])
-      log_in_user(@user.id)
-      redirect_to secrets_url
+    @person = Person.find_by(email: person_params[:email])
+    if @Person && @Person.authenticate(person_params[:password])
+      log_in_person(@person.id)
+      redirect_to edit_url
     else
       @error = "Those credentials don't match anything we have in the database"
-      render :new
+      render :edit
     end
   end
 
   def destroy
-    session.delete(:user_id)
+    session.delete(:person_id)
     redirect_to new_session_path
   end
 
   private
 
-  def user_params
-    params.require(:session).permit(:username, :password)
+  def person_params
+    params.require(:session).permit(:email, :password)
   end
 end
