@@ -6,7 +6,7 @@ class CreatePeople < ActiveRecord::Migration[5.2]
       t.string :slack
       t.string :classification
       t.date :birthday
-      t.boolean :has_account?, :default => nil
+      t.boolean :has_account?, default: false
       t.string :password_digest, :default => nil
 
 

@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_07_11_192414) do
     t.string "slack"
     t.string "classification"
     t.date "birthday"
-    t.boolean "has_account?"
+    t.boolean "has_account?", default: false
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
