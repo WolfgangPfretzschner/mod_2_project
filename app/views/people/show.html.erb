@@ -23,19 +23,16 @@ End Date: <%= @person.cohort.end_date %>
   </li>
   <li>
     <% if @person.birthday != nil %>
-      <%= "Birthday:" @person.birthday %>
+      <%= "Birthday:" %><%=  @person.birthday %>
       <% end %>
   </li>
   <li>
-    <% if @person.interest != nil %>
+    <% if @person.interests != nil %>
     <%=   "Interests:" %>
       <% @person.interests.each do |interest| %>
         <%= interest.name %>
       <% end %>
     <% end %>
-  </li>
-  <li>
-    Slack Id: <%= @person.slack %>
   </li>
 </ul>
 

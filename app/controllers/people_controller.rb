@@ -1,5 +1,9 @@
 class PeopleController < ApplicationController
 
+
+
+
+############################
   before_action :fetch_person, only: [:show]
   def new
     @person = Person.new
