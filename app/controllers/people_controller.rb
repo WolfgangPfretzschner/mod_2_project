@@ -9,7 +9,9 @@ class PeopleController < ApplicationController
 
   end
 
+  def create
   
+  end
 
   private
 
