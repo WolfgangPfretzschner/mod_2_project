@@ -1,19 +1,43 @@
 <h1><%= @person.name %></h1>
 <br />
+
+Cohort: <%= @person.cohort.name %>
+<br>
+Current Module: <%= @person.cohort.current_module %>
+<br>
+Start Date: <%= @person.cohort.start_date %>
+<br>
+End Date: <%= @person.cohort.end_date %>
+<br>
+
+
 <ul>
   <li>
     Slack Id: <%= @person.slack %>
   </li>
   <li>
-    Slack Id: <%= @person.slack %>
+    Classification: <%= @person.classification %>
   </li>
   <li>
     Slack Id: <%= @person.slack %>
   </li>
   <li>
-    Slack Id: <%= @person.slack %>
+    <% if @person.birthday != nil %>
+      <%= "Birthday:" @person.birthday %>
+      <% end %>
+  </li>
+  <li>
+    <% if @person.interest != nil %>
+    <%=   "Interests:" %>
+      <% @person.interests.each do |interest| %>
+        <%= interest.name %>
+      <% end %>
+    <% end %>
   </li>
   <li>
     Slack Id: <%= @person.slack %>
   </li>
 </ul>
+
+<br>
+<%= link_to 'Edit', edit_person_path %>
