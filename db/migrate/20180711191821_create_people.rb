@@ -8,6 +8,7 @@ class CreatePeople < ActiveRecord::Migration[5.2]
       t.date :birthday
       t.boolean :has_account?
       t.string :password_digest
+      
 
       t.timestamps
     end
