@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2018_07_11_192414) do
 
   create_table "cohorts", force: :cascade do |t|
-    t.string "name"
-    t.string "current_module"
+    t.string "name", default: ""
+    t.string "current_module", default: ""
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", null: false
@@ -22,19 +22,19 @@ ActiveRecord::Schema.define(version: 2018_07_11_192414) do
   end
 
   create_table "interests", force: :cascade do |t|
-    t.string "name"
+    t.string "name", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "people", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "slack"
-    t.string "classification"
+    t.string "name", default: ""
+    t.string "email", default: ""
+    t.string "slack", default: ""
+    t.string "classification", default: ""
     t.date "birthday"
-    t.boolean "has_account?", default: false
-    t.string "password_digest"
+    t.boolean "has_account?"
+    t.string "password_digest", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "cohort_id"
