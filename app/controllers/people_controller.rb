@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
 
 before_action :set_person, only: [:show, :edit, :update, :destoy]
-before_action :authorized?, only: %i[edit update]
+# before_action :authorized?, only: %i[edit update]
   def index
     @people = Person.all
   end
@@ -24,6 +24,23 @@ before_action :authorized?, only: %i[edit update]
 
 
   def edit
+  end
+
+  def new_reg
+
+  end
+
+
+  def register
+    @person = Person.find_by(email: params[:email])
+    if @person && !@person.has_account?
+      @person.authenticate(person_params[:password])
+      log_in_person(@person.id)
+      redirect_to @person
+    else
+
+      render :new_reg, notice: 'Secret was successfully created.'
+    end
   end
 
   def update

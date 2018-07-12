@@ -6,17 +6,8 @@ class SessionsController < ApplicationController
     #is login form
   end
 
-  def create
-    @person = Person.find_by(email: person_params[:email])
-    if @person && !@person.has_account?
-      byebug
-        # authenticate(person_params[:password])
-      log_in_person(@person.id)
-      redirect_to edit_url
-    else
-      @error = "Those credentials don't match anything we have in the database"
-      render :edit
-    end
+  def update
+
   end
 
   def destroy
