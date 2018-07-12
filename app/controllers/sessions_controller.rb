@@ -3,12 +3,14 @@ class SessionsController < ApplicationController
 
 
   def new
-    # code
+    #is login form
   end
 
   def create
     @person = Person.find_by(email: person_params[:email])
-    if @Person && @Person.authenticate(person_params[:password])
+    if @person && !@person.has_account?
+      byebug
+        # authenticate(person_params[:password])
       log_in_person(@person.id)
       redirect_to edit_url
     else

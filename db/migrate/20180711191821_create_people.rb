@@ -1,13 +1,13 @@
 class CreatePeople < ActiveRecord::Migration[5.2]
   def change
     create_table :people do |t|
-      t.string :name
-      t.string :email
-      t.string :slack
-      t.string :classification
-      t.date :birthday
-      t.boolean :has_account?, :default => nil
-      t.string :password_digest, :default => nil
+      t.string :name, :default => ''
+      t.string :email, :default => ''
+      t.string :slack, :default => ''
+      t.string :classification, :default => ''
+      t.date :birthday, :default => 2020-02-02
+      t.boolean :has_account?
+      t.string :password_digest, :default => ''
 
 
       t.timestamps

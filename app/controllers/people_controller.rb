@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
 
 before_action :set_person, only: [:show, :edit, :update, :destoy]
-# skip_before_action :authorized?, only: %i[edit update]
+before_action :authorized?, only: %i[edit update]
   def index
     @people = Person.all
   end
@@ -30,7 +30,8 @@ before_action :set_person, only: [:show, :edit, :update, :destoy]
     @person.update(person_params)
     if @person.save
       # log_in_person(@person.id)
-      redirect_to person_path(@person), notice: 'User was successfully updated.'
+      redirect_to person_path(@person)
+
 
     else
       render :edit
