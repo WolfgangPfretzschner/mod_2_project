@@ -26,7 +26,7 @@ before_action :set_person, only: [:show, :edit, :update, :destoy]
   def edit
   end
 
-  def new_reg
+  def new_register
 
   end
 
@@ -34,12 +34,12 @@ before_action :set_person, only: [:show, :edit, :update, :destoy]
   def register
     @person = Person.find_by(email: params[:email])
     if @person && !@person.has_account?
-      @person.authenticate(person_params[:password])
+      # @person.authenticate(person_params[:password])
       log_in_person(@person.id)
       redirect_to @person
     else
 
-      render :new_reg, notice: 'Secret was successfully created.'
+      render :new_register, notice: 'Secret was successfully created.'
     end
   end
 

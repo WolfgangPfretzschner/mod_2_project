@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :interests
   resources :cohorts
-  get '/people/new_reg', to: 'people#new_reg', as:'register'
+  get '/people/new_register', to: 'people#new_register', as:'register'
   post '/people/register', to: 'people#register'
   resources :people
   resources :sessions, only: %i[new create]
