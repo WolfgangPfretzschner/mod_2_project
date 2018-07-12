@@ -32,13 +32,16 @@ before_action :set_person, only: [:show, :edit, :update, :destoy]
 
 
   def register
-    @person = Person.find_by(email: params[:email])
-    if @person && !@person.has_account?
-      # @person.authenticate(person_params[:password])
-      log_in_person(@person.id)
-      redirect_to @person
-    else
+    # byebug
+    @person = Person.find_by(email: register_params[:email])
 
+    if @person && !@person.has_account?
+
+      @person.authenticate(register_params[:password])
+      # @person.has_account? = true
+      log_in_person(@person.id)
+      redirect_to edit_person_path(@person)
+    else
       render :new_register, notice: 'Secret was successfully created.'
     end
   end
@@ -66,8 +69,12 @@ before_action :set_person, only: [:show, :edit, :update, :destoy]
     @person = Person.find(params[:id])
   end
 
+  def register_params
+    params.permit(:email, :password)
+  end
+
   def person_params
-    params.require(:person).permit(:name, :email, :slack, :classification, :birthday,interest_ids:[], interests_attributes: [:name])
+    params.require(:person).permit(:name, :email, :slack, :password, :classification, :birthday,interest_ids:[], interests_attributes: [:name])
   end
 
 end
