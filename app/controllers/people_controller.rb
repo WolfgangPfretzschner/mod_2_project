@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
 
 before_action :set_person, only: [:show, :edit, :update, :destoy]
-
+# skip_before_action :authorized?, only: %i[edit update]
   def index
     @people = Person.all
   end
@@ -15,9 +15,8 @@ before_action :set_person, only: [:show, :edit, :update, :destoy]
 
    def create
     @person = Person.new(person_params)
-      if @person.valid?
-        @person.save
-        redirect_to @person
+      if @person.save
+
       else
         render :new
       end
@@ -30,7 +29,9 @@ before_action :set_person, only: [:show, :edit, :update, :destoy]
   def update
     @person.update(person_params)
     if @person.save
-      redirect_to person_path(@person)
+      log_in_person(@person.id)
+      redirect_to edit_person_path(@person), notice: 'User was successfully created.'
+
     else
       render :edit
     end

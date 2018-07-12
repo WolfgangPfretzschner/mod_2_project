@@ -1,6 +1,7 @@
 
 
 
+
 <h1><%= @person.name %></h1>
 <br />
 
@@ -40,4 +41,4 @@ End Date: <%= @person.cohort.end_date %>
 </ul>
 
 <br>
-<%= link_to 'Edit', edit_person_path %>
+<button><%= link_to 'Edit', edit_person_path, :class => "btn btn-primary btn-sm"  %></button>

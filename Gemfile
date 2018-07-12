@@ -12,7 +12,7 @@ gem 'sqlite3'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.7'
 # gem 'sass-rails', '>= 3.2'
-
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
