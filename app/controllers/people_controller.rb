@@ -29,8 +29,8 @@ before_action :set_person, only: [:show, :edit, :update, :destoy]
   def update
     @person.update(person_params)
     if @person.save
-      log_in_person(@person.id)
-      redirect_to edit_person_path(@person), notice: 'User was successfully created.'
+      # log_in_person(@person.id)
+      redirect_to person_path(@person), notice: 'User was successfully updated.'
 
     else
       render :edit
