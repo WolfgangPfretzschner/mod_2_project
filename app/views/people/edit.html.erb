@@ -1,0 +1,19 @@
+<h1>Update your FlatFace Profile <%= @person.name %></h1>
+
+<%= form_for @person do |f| %>
+<%= f.label "name:" %>
+<%= f.text_field :name %><br />
+<%= f.label "Slack:" %>
+<%= f.text_field :slack %><br />
+<%= f.label "Classification:" %>
+<%= f.text_field :classification %><br />
+<%= f.label "birthday:" %>
+<%= f.text_field :birthday %><br />
+<%= f.label "Interests:" %>
+<%= f.collection_check_boxes :interest_ids, Interest.all, :id, :name%><br />
+<%= f.fields_for :interests, @person.interests.build do |interests_fields| %>
+    <%= interests_fields.label "Add new interest:" %>
+    <%= interests_fields.text_field :name %>
+  <% end %><br />
+  <%= f.submit %>
+<% end %>

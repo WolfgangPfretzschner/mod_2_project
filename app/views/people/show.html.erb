@@ -30,7 +30,7 @@ End Date: <%= @person.cohort.end_date %>
     <% if @person.interests != nil %>
     <%=   "Interests:" %>
       <% @person.interests.each do |interest| %>
-        <%= interest.name %>
+        <%= interest.name %>,
       <% end %>
     <% end %>
   </li>
