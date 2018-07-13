@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1>Update your FlatFace Profile <%= @person.name %></h1>
+<h1>Update Your Profile</h1>
 
 <%= form_for @person do |f| %>
 <%= f.label "name:" %>
@@ -16,5 +16,5 @@
     <%= interests_fields.label "Add new interest:" %>
     <%= interests_fields.text_field :name %>
   <% end %><br />
-  <%= f.submit %>
+  <%= f.submit "Update Profile" %>
 <% end %>

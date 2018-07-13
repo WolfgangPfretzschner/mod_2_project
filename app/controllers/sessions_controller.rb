@@ -24,7 +24,7 @@ end
 
   def destroy
     reset_session
-    flash[:success] = "You have been loged out!"
+    flash[:success] = "You have been logged out!"
     redirect_to new_session_path
   end
 
