@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flatface</title>
+    <title>Flatiron Navigator</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+<<<<<<< HEAD
 
 
   </head>
@@ -47,5 +47,37 @@
   </div>
 </div>
 
+=======
+    <nav class="navbar navbar-light navbar-default navbar-fixed-top" style="background-color: #dbff7f;">
+      <div class="container">
+        <a class="navbar-brand" href="/people">Flatiron Navigator</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="nav navbar-nav navbar-right">
+            <% if @logged_in_user %>
+              Logged in as:
+              <%= @logged_in_people.email %>
+              <%= link_to "Logout", logout_path, method: 'delete' %>
+            <% else %>
+
+              <button type="button" class="btn btn-light" aria-label="Left Align">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <%= link_to "Register", '/people/new_register' %></button>
+              <button type="button" class="btn btn-light" aria-label="Left Align">
+                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                <%= link_to "Log in", new_session_path %></button>
+
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+  </head>
+
+  <body>
+    <div class="container">
+      <%= yield %>
+    </div>
+>>>>>>> design_etc_branch
   </body>
+
 </html>
