@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flatface</title>
+    <title>Flatiron Navigator</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <% if @logged_in_user %>
-        Logged in as: <%= @logged_in_people.email %>
-        <%= link_to "Logout", logout_path, method: 'delete' %>
-      <% else %>
-      <button type="button" class="btn btn-default" aria-label="Left Align">
-<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-<%= link_to "Register", '/people/new_register' %></button>
-<button type="button" class="btn btn-default" aria-label="Left Align">
-<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> <%= link_to "Login", new_session_path %></button>
-      <% end %>
+    <nav class="navbar navbar-light navbar-default navbar-fixed-top" style="background-color: #dbff7f;">
+      <div class="container">
+        <a class="navbar-brand" href="/people">Flatiron Navigator</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="nav navbar-nav navbar-right">
+            <% if @logged_in_user %>
+              Logged in as:
+              <%= @logged_in_people.email %>
+              <%= link_to "Logout", logout_path, method: 'delete' %>
+            <% else %>
+
+              <button type="button" class="btn btn-light" aria-label="Left Align">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <%= link_to "Register", '/people/new_register' %></button>
+              <button type="button" class="btn btn-light" aria-label="Left Align">
+                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                <%= link_to "Log in", new_session_path %></button>
+
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </nav>
   </head>
 
   <body>
-
-
-
     <div class="container">
-
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="/people">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/sessions/new"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Contact</a></li>
-        <li class="nav-item"><a class="nav-link" href="a#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> About</a></li>
-      </ul>
-
-    <%= yield %>
-  </div>
-
-
+      <%= yield %>
+    </div>
   </body>
+
 </html>

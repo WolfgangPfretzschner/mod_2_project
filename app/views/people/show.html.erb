@@ -1,44 +1,48 @@
-
 <p id="notice"><%= notice %></p>
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-offset-3">
 
-<h1><%= @person.name %></h1>
-<br />
-
-Cohort: <%= @person.cohort.name %>
-<br>
-Current Module: <%= @person.cohort.current_module %>
-<br>
-Start Date: <%= @person.cohort.start_date %>
-<br>
-End Date: <%= @person.cohort.end_date %>
-<br>
-
-
-<ul>
-  <li>
-    Slack Id: <%= @person.slack %>
-  </li>
-  <li>
-    Classification: <%= @person.classification %>
-  </li>
-  <li>
-    Slack Id: <%= @person.slack %>
-  </li>
-  <li>
-    <% if @person.birthday != nil %>
-      <%= "Birthday:" %><%=  @person.birthday %>
+      <h1><%= @person.name %></h1>
+      <br>
+      <img class="img-responsive" src=<%= @person.image_url %> alt="Profile Image">
+      <br>
+      Classification:
+      <%= @person.classification %>
+      <br>
+      Cohort:
+      <%= @person.cohort.name %>
+      <br>
+      Slack ID:
+      <%= @person.slack %>
+      <br>
+      Current Module:
+      <%= @person.cohort.current_module %>
+      <br>
+      Cohort Start Date:
+      <%= @person.cohort.start_date %>
+      <br>
+      Cohort End Date:
+      <%= @person.cohort.end_date %>
+      <br>
+      <% if @person.birthday != nil %>
+        <%= "Birthday: " %><%= @person.birthday %>
       <% end %>
-  </li>
-  <li>
-    <% if @person.interests != nil %>
-    <%=   "Interests:" %>
-      <% @person.interests.each do |interest| %>
-        <%= interest.name %>,
+      <br>
+      <% if @person.interests != nil %>
+        <%= "Interests: " %>
+        <% @person.interests.each do |interest| %>
+          <%= interest.name %>
+        <% end %>
       <% end %>
-    <% end %>
-  </li>
-</ul>
+      <br>
+      <br>
 
-<br>
-<button><%= link_to 'Edit', edit_person_path, :class => "btn btn-primary btn-sm"  %></button>
+      <button type="button" class="btn btn-light" aria-label="Left Align">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <%= link_to "Edit", edit_person_path %></button>
+
+    </div>
+  </div>
+</div>

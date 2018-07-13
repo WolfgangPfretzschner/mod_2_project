@@ -1,23 +1,16 @@
-<h1>Flatiron Navigator</h1>
-<br />
-<%= link_to 'Create New Account', new_person_path %>
-<br />
-<%# link_to 'Log In', login_person_path %>
-
-
-<table>
-    <tbody>
+<div class="container">
+  <div class="row">
     <% @people.each do |person| %>
-      <tr>
-        <td><%= link_to person.name, person %></td>
-        <td><%= person.cohort.current_module %></td>
-        <td><%= person.classification %></td>
-      </tr>
+      <div class="col-sm-3">
+        <img class="img-responsive" src=<%= person.image_url %> alt="Profile Image">
+        <%= link_to person.name, person %>
+        <br>
+        <%= person.classification %>
+        <br>
+        <%= person.cohort.current_module %>
+        <br>
+      </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-
-<br>
+  </div>
+</div>
