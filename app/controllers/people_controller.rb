@@ -1,9 +1,10 @@
 class PeopleController < ApplicationController
 
 before_action :set_person, only: [:show, :edit, :update, :destoy]
-# before_action :authorized?, only: %i[edit update]
+skip_before_action :authorized?, except: %i[edit]
   def index
     @people = Person.all
+
   end
 
   def show
@@ -16,51 +17,58 @@ before_action :set_person, only: [:show, :edit, :update, :destoy]
    def create
     @person = Person.new(person_params)
       if @person.save
-
       else
         render :new
       end
   end
 
-
   def edit
+    unless logged_in_person_id == @person.id
+      flash[:success] = "You do not have the rights to access this page!"
+      redirect_to person_path(logged_in_person_id)
+    end
+  end
+
+  def login
+    @person = Person.new
   end
 
   def new_register
-
+    @person = Person.new
   end
 
-
   def register
-    # byebug
-    @person = Person.find_by(email: register_params[:email])
-
+    @person = Person.find_by(email: person_params[:email])
     if @person && !@person.has_account?
-
-      @person.authenticate(register_params[:password])
-      # @person.has_account? = true
+      @person.update(has_account?: true, password: person_params[:password])
+      @person.authenticate(person_params[:password])
       log_in_person(@person.id)
+      @person.save
+      flash[:success] = "Welcome to the Flatface App!"
       redirect_to edit_person_path(@person)
+    elsif @person && @person.has_account?
+      flash[:error] = "You have already registered, please log in!"
+      redirect_to new_session_path
     else
-      render :new_register, notice: 'Secret was successfully created.'
+      flash[:error] = "Wrong credentials"
+      render :new_register
     end
   end
 
   def update
     @person.update(person_params)
     if @person.save
-      # log_in_person(@person.id)
+      #log_in_person(@person.id)
+      flash[:success] = "Updated your profie!"
       redirect_to person_path(@person)
-
-
     else
       render :edit
     end
   end
 
   def destroy
-    @person.destoy
-    redirect_to persons_path
+    @person.destroy
+    redirect_to people_path
   end
 
   private
@@ -69,9 +77,6 @@ before_action :set_person, only: [:show, :edit, :update, :destoy]
     @person = Person.find(params[:id])
   end
 
-  def register_params
-    params.permit(:email, :password)
-  end
 
   def person_params
     params.require(:person).permit(:name, :email, :slack, :password, :classification, :birthday,interest_ids:[], interests_attributes: [:name])

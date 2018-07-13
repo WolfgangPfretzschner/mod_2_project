@@ -8,19 +8,29 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <% if @logged_in_user %>
-        Logged in as: <%= @logged_in_people.email %>
-        <%= link_to "Logout", logout_path, method: 'delete' %>
-      <% else %>
-      <button type="button" class="btn btn-default" aria-label="Left Align">
-<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-<%= link_to "Register", '/people/new_register' %></button>
-<button type="button" class="btn btn-default" aria-label="Left Align">
-<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> <%= link_to "Login", new_session_path %></button>
-      <% end %>
+
+
   </head>
 
   <body>
+    <div class="container">
+      <% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+      <% end %>
+
+
+    <% if temp_user = get_logged_in_person %>
+        Logged in as: <%= temp_user.email %>
+        <%= link_to "Logout", logout_path, method: 'delete' %>
+      <% else %>
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <%= link_to "Register", '/people/new_register' %></button>
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> <%= link_to "Login", new_session_path %></button>
+      <% end %>
 
 
 
@@ -35,7 +45,7 @@
 
     <%= yield %>
   </div>
-
+</div>
 
   </body>
 </html>

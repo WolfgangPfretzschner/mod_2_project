@@ -9,7 +9,7 @@ class Person < ApplicationRecord
   def interests_attributes=(interest_attributes)
     interest_attributes.values.each do |interest_attributes|
       interest = Interest.find_or_create_by(interest_attributes)
-      self.interests.build(name: interest.name)
+      self.interests.build(name: interest.name) unless interest.name = ""
     end
   end
 end
